@@ -10,12 +10,19 @@ async function getPokemon(identifier) {
         // if a pokemon is present in version 1 and version 3, the description will always be for version 1
         const description = jsonData["flavor_text_entries"][2]["flavor_text"].split("\n").join(" ");
 
-        console.log(`${name}\n${description}`);
+        const id = await getID(identifier);
+        console.log(`${id}: ${name}\n${description}`);
     } catch (error) {
         console.error(`Receieved error: ${error}`);
     }
 }
 
+async function getID(identifier) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${identifier}`);
+    const jsonData = await response.json();
+
+    return jsonData["id"];
+}
 // promises can return at different times, but that's not an issue for this project
 // since a single query would be done to return a pokemon's data
 getPokemon("1");

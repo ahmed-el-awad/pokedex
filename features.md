@@ -1,7 +1,7 @@
 # Main Information to Cover
-- Name
-- Number 
-- Description
+- Name ✅
+- Number ✅
+- Description ✅
 - Front Image 
 - Cries
 
