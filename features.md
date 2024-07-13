@@ -3,6 +3,7 @@
 - Number 
 - Description
 - Front Image 
+- Cries
 
 # Side Information to Cover
 - Types
