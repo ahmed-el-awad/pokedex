@@ -1,5 +1,6 @@
-// identifier can be a pokemon name or number
 async function getPokemon(identifier) {
+    identifier = identifier.toLowerCase();
+
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${identifier}`);
         const jsonData = await response.json();
