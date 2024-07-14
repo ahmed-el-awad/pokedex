@@ -23,8 +23,11 @@ async function getID(identifier) {
 
     return jsonData["id"];
 }
-// promises can return at different times, but that's not an issue for this project
-// since a single query would be done to return a pokemon's data
-getPokemon("1");
-getPokemon(2);
-getPokemon("venusaur");
+
+async function getImage() {
+    const input = document.getElementById("pokemon").value;
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
+    const jsonData = await response.json();
+
+    console.log(jsonData["sprites"]["front_default"]);
+}
