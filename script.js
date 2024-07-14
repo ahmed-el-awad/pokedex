@@ -26,11 +26,20 @@ async function getID(identifier) {
 
 async function getImage() {
     try {
-        const input = document.getElementById("pokemon").value;
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
+        const input = document.getElementById("pokemon");
+        const pokemonID = input.value;
+
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
         const jsonData = await response.json();
 
+        // Debugging
         console.log(jsonData["sprites"]["front_default"]);
+
+        const pokemonImage = jsonData["sprites"]["front_default"];
+        const image = document.createElement("img");
+        image.src = pokemonImage;
+
+        input.insertAdjacentElement("afterend", image);
     } catch (error) {
         console.log("Pokemon not found");
     }
