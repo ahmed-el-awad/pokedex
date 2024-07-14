@@ -33,10 +33,11 @@ async function renderImage() {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
         const jsonData = await response.json();
 
-        // Debugging
-        console.log(jsonData["sprites"]["front_default"]);
-
         const pokemonImage = jsonData["sprites"]["front_default"];
+
+        // Debugging
+        console.log(`Image link for: ${pokemonImage}`);
+
         const image = document.createElement("img");
         image.src = pokemonImage;
 
