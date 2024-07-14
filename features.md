@@ -2,8 +2,8 @@
 - Name ✅
 - Number ✅
 - Description ✅
-- Front Image 
-- Cries
+- Front Image ✅
+- Cries ✅
 
 # Side Information to Cover
 - Types
