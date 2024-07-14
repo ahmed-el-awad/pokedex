@@ -25,6 +25,9 @@ async function getID(identifier) {
     return jsonData["id"];
 }
 
+// TODO: wrap this render image in a render function
+// the render function will process loading of image,
+// audio, name, and other details
 async function renderImage() {
     try {
         const input = document.getElementById("pokemon");
