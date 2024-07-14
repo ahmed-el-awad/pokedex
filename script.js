@@ -42,7 +42,24 @@ async function renderImage() {
         image.src = pokemonImage;
 
         input.insertAdjacentElement("afterend", image);
+        renderAudio();
     } catch (error) {
         console.log("Pokemon not found");
     }
+}
+
+async function renderAudio() {
+    const input = document.getElementById("pokemon");
+    const pokemonID = input.value.toLowerCase();
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
+    const jsonData = await response.json();
+
+    const pokemonCry = jsonData["cries"]["latest"];
+
+    const audio = document.createElement("audio");
+    audio.src = pokemonCry;
+    audio.play();
+
+    input.insertAdjacentElement("afterend", audio);
 }
