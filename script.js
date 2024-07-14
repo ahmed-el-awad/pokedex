@@ -25,7 +25,7 @@ async function getID(identifier) {
     return jsonData["id"];
 }
 
-async function getImage() {
+async function renderImage() {
     try {
         const input = document.getElementById("pokemon");
         const pokemonID = input.value.toLowerCase();
