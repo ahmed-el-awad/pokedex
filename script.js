@@ -27,7 +27,7 @@ async function getID(identifier) {
 async function getImage() {
     try {
         const input = document.getElementById("pokemon");
-        const pokemonID = input.value;
+        const pokemonID = input.value.toLowerCase();
 
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
         const jsonData = await response.json();
