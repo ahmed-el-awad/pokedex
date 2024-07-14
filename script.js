@@ -25,8 +25,8 @@ async function getID(identifier) {
     return jsonData["id"];
 }
 
-function render() {
-    async function renderImage() {
+function loadPokemon() {
+    async function loadImage() {
         try {
             const input = document.getElementById("pokemon");
             const pokemonID = input.value.toLowerCase();
@@ -49,7 +49,7 @@ function render() {
         }
     }
 
-    async function renderAudio() {
+    async function loadAudio() {
         try {
             const input = document.getElementById("pokemon");
             const pokemonID = input.value.toLowerCase();
@@ -70,6 +70,6 @@ function render() {
         }
     }
 
-    renderImage();
-    renderAudio();
+    loadImage();
+    loadAudio();
 }
