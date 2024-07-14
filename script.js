@@ -25,44 +25,51 @@ async function getID(identifier) {
     return jsonData["id"];
 }
 
-// TODO: wrap this render image in a render function
-// the render function will process loading of image,
-// audio, name, and other details
-async function renderImage() {
-    try {
-        const input = document.getElementById("pokemon");
-        const pokemonID = input.value.toLowerCase();
+function render() {
+    async function renderImage() {
+        try {
+            const input = document.getElementById("pokemon");
+            const pokemonID = input.value.toLowerCase();
 
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
-        const jsonData = await response.json();
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
+            const jsonData = await response.json();
 
-        const pokemonImage = jsonData["sprites"]["front_default"];
+            const pokemonImage = jsonData["sprites"]["front_default"];
 
-        // Debugging
-        console.log(`Image link for: ${pokemonImage}`);
+            // Debugging
+            console.log(`Image link for: ${pokemonImage}`);
 
-        const image = document.createElement("img");
-        image.src = pokemonImage;
+            const image = document.createElement("img");
+            image.src = pokemonImage;
 
-        input.insertAdjacentElement("afterend", image);
-        renderAudio();
-    } catch (error) {
-        console.log("Pokemon not found");
+            input.insertAdjacentElement("afterend", image);
+        } catch (error) {
+            console.log("Failed to load image.");
+            console.error(error);
+        }
     }
-}
 
-async function renderAudio() {
-    const input = document.getElementById("pokemon");
-    const pokemonID = input.value.toLowerCase();
+    async function renderAudio() {
+        try {
+            const input = document.getElementById("pokemon");
+            const pokemonID = input.value.toLowerCase();
 
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
-    const jsonData = await response.json();
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
+            const jsonData = await response.json();
 
-    const pokemonCry = jsonData["cries"]["latest"];
+            const pokemonCry = jsonData["cries"]["latest"];
 
-    const audio = document.createElement("audio");
-    audio.src = pokemonCry;
-    audio.play();
+            const audio = document.createElement("audio");
+            audio.src = pokemonCry;
+            audio.play();
 
-    input.insertAdjacentElement("afterend", audio);
+            input.insertAdjacentElement("afterend", audio);
+        } catch (error) {
+            console.error(error);
+            console.log("Failed to load audio.");
+        }
+    }
+
+    renderImage();
+    renderAudio();
 }
