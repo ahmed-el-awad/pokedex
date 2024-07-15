@@ -49,16 +49,18 @@ async function loadPokemon() {
 
             // currently the description is getting the first description found based on the first version present through the api
             // if a pokemon is present in version 1 and version 3, the description will always be for version 1
-            const description = jsonData["flavor_text_entries"][2]["flavor_text"]
-                .split("\n")
-                .join(" ");
+            const desc = jsonData["flavor_text_entries"][2]["flavor_text"].split("\n").join(" ");
 
             // Debugging
-            console.log(`${id}: ${name}\n${description}`);
+            console.log(`${id}: ${name}\n${desc}`);
 
             const header = document.createElement("h1");
             header.innerText = `${id}: ${name}`;
 
+            const description = document.createElement("p");
+            description.innerText = desc;
+
+            input.insertAdjacentElement("afterend", description);
             input.insertAdjacentElement("afterend", header);
         } catch (error) {
             console.error(`Receieved error: ${error}`);
