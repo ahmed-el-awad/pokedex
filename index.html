@@ -5,13 +5,15 @@
         <title>Pokedex</title>
     </head>
     <body>
-        <input
-            style="display: block; width: 20rem; margin-bottom: 1rem"
-            id="pokemon"
-            placeholder="Enter a Pokemon's name or number"
-            value=""
-        />
-        <button onclick="loadPokemon()">Submit</button>
+        <div id="inputField">
+            <input
+                style="width: 20rem; margin-bottom: 0.25rem"
+                id="pokemon"
+                placeholder="Enter a Pokemon's name or number"
+                value=""
+            />
+            <button onclick="loadPokemon()">Submit</button>
+        </div>
 
         <script src="script.js"></script>
     </body>

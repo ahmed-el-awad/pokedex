@@ -1,5 +1,6 @@
 async function loadPokemon() {
     const input = document.getElementById("pokemon");
+    const inputField = document.getElementById("inputField");
     const pokemonID = input.value.toLowerCase(); // name or number
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
     const jsonData = await response.json();
@@ -14,7 +15,7 @@ async function loadPokemon() {
             const image = document.createElement("img");
             image.src = pokemonImage;
 
-            input.insertAdjacentElement("afterend", image);
+            inputField.insertAdjacentElement("afterend", image);
         } catch (error) {
             console.log("Failed to load image.");
             console.error(error);
@@ -32,7 +33,7 @@ async function loadPokemon() {
             audio.src = pokemonCry;
             audio.play();
 
-            input.insertAdjacentElement("afterend", audio);
+            inputField.insertAdjacentElement("afterend", audio);
         } catch (error) {
             console.error(error);
             console.log("Failed to load audio.");
@@ -60,14 +61,14 @@ async function loadPokemon() {
             const description = document.createElement("p");
             description.innerText = desc;
 
-            input.insertAdjacentElement("afterend", description);
-            input.insertAdjacentElement("afterend", header);
+            inputField.insertAdjacentElement("afterend", description);
+            inputField.insertAdjacentElement("afterend", header);
         } catch (error) {
             console.error(`Receieved error: ${error}`);
         }
     }
 
+    loadName(pokemonID);
     loadImage();
     loadAudio();
-    loadName(pokemonID);
 }
