@@ -40,6 +40,7 @@ async function loadPokemon() {
         }
     }
 
+    // TODO: account for names that have hyphens or periods (ex: Mr. Mime, Ho-Oh)
     async function loadName(pokemonID) {
         try {
             // different api endpoint, this one contains the description
