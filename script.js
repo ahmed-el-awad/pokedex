@@ -41,6 +41,9 @@ async function loadPokemon() {
     }
 
     // TODO: account for names that have hyphens or periods (ex: Mr. Mime, Ho-Oh)
+    // TODO: account for mega evolutions by loading the numbers, names, and descriptions from their original forms
+    // TODO: account for different forms (the logic will be the same as megas)
+    // TODO: fix description language being other countries
     async function loadName(pokemonID) {
         try {
             // different api endpoint, this one contains the description
