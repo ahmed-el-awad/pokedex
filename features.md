@@ -9,3 +9,4 @@
 - Types
 - Back Image
 - Evolutions
+- Different Languages
