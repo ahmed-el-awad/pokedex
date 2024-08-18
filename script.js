@@ -76,3 +76,10 @@ async function loadPokemon() {
     loadImage();
     loadAudio();
 }
+
+// if a user pressed enter after writing a pokemon's id or name
+function pressedEnter() {
+    if (event.key === "Enter") {
+        loadPokemon()
+    }
+}
