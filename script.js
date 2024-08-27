@@ -4,6 +4,8 @@ async function loadPokemon() {
   const pokemonID = input.value.toLowerCase(); // name or number
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
   const jsonData = await response.json();
+  // TODO: make "language" get the language set by the user from the UI through a dropdown
+  const language = "en";
 
   async function loadImage() {
     try {
@@ -52,18 +54,25 @@ async function loadPokemon() {
       const name = jsonData["name"].charAt(0).toUpperCase() + jsonData["name"].slice(1);
       const id = jsonData["id"];
 
-      // currently the description is getting the first description found based on the first version present through the api
-      // if a pokemon is present in version 1 and version 3, the description will always be for version 1
-      const desc = jsonData["flavor_text_entries"][2]["flavor_text"].split("\n").join(" ");
+      // gets the description of a pokemon based of the language set by the user
+      // TODO: some pokemons do not have a description in certain languages
+      // make it error and show that to the user (maybe display the desc in english?)
+      let desc = jsonData["flavor_text_entries"].find((obj) => {
+        if (obj["language"]["name"] === language) {
+          return obj;
+        }
+      });
+
+      desc = desc.flavor_text;
 
       // Debugging
       console.log(`${id}: ${name}\n${desc}`);
 
       const header = document.createElement("h1");
-      header.innerText = `${id}: ${name}`;
+      header.innerHTML = `${id}: ${name}`;
 
       const description = document.createElement("p");
-      description.innerText = desc;
+      description.innerHTML = desc; // the key for the description
 
       inputField.insertAdjacentElement("afterend", description);
       inputField.insertAdjacentElement("afterend", header);
