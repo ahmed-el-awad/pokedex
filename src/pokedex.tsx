@@ -1,4 +1,8 @@
 import { useState } from "react";
+import PokemonData from "./PokemonData";
+import { Pokemon } from "./interface";
+
+const pokemons: Pokemon[] = [];
 
 function Pokedex() {
   const [pokemonID, setPokemonID] = useState("");
@@ -100,6 +104,16 @@ function Pokedex() {
     }
   }
 
+  function addToArray() {
+    pokemons.push({
+      isImagePresent,
+      pokemonDescription,
+      pokemonName,
+      pokemonImage,
+    });
+
+    console.log(pokemons);
+  }
   return (
     <>
       <input
@@ -120,14 +134,24 @@ function Pokedex() {
           );
           const jsonData = await response.json();
           loadImage(jsonData);
+          addToArray();
         }}
       >
         Submit
       </button>
-      <h1>{pokemonName}</h1>
-      <p>{pokemonDescription}</p>
-      {isImagePresent && <img style={{ display: "block" }} src={pokemonImage} alt="pokemon" />}
-    </div>
+      {pokemons.length > 0 &&
+        pokemons.map((_, id) => {
+          return (
+            <PokemonData
+              key={id}
+              isImagePresent={isImagePresent}
+              pokemonImage={pokemonImage}
+              pokemonName={pokemonName}
+              pokemonDescription={pokemonDescription}
+            />
+          );
+        })}
+    </>
   );
 }
 
