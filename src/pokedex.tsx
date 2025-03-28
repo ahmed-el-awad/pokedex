@@ -31,9 +31,12 @@ function Pokedex() {
   async function loadName(pokemonID: string | number) {
     try {
       // different api endpoint, this one contains the description
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`);
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`,
+      );
       const jsonData = await response.json();
-      const name = jsonData["name"].charAt(0).toUpperCase() + jsonData["name"].slice(1);
+      const name =
+        jsonData["name"].charAt(0).toUpperCase() + jsonData["name"].slice(1);
       const number = jsonData["id"];
 
       // currently the description is getting the first description found based on the first version present through the api
@@ -61,7 +64,7 @@ function Pokedex() {
     }
   }
 
-  async function loadImage(jsonData) {
+  async function loadImage(jsonData: any) {
     try {
       const pokemonImage = jsonData["sprites"]["front_default"];
 
@@ -83,6 +86,7 @@ function Pokedex() {
       console.log(`Audio link: ${pokemonCry}`);
 
       const audio = new Audio(pokemonCry);
+      audio.volume = 0.05;
       audio.play();
     } catch (error) {
       console.error(error);
@@ -109,7 +113,10 @@ function Pokedex() {
       <button
         onClick={async () => {
           loadPokemon(pokemonID);
-          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
+
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemonID}`,
+          );
           const jsonData = await response.json();
           loadImage(jsonData);
         }}
