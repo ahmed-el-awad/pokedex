@@ -101,9 +101,9 @@ function Pokedex() {
   }
 
   return (
-    <div>
+    <>
       <input
-        style={{ width: "15rem", marginBottom: "0.25rem", marginRight: "0.25rem" }}
+        className="m-1 w-60 rounded-md border-2 border-gray-500 p-1"
         placeholder="Enter a Pokemon's name or number"
         type="text"
         value={pokemonID}
@@ -111,6 +111,7 @@ function Pokedex() {
         onKeyDown={() => pressedEnter(pokemonID)}
       />
       <button
+        className="rounded-md border-2 border-gray-500 p-1"
         onClick={async () => {
           loadPokemon(pokemonID);
 
