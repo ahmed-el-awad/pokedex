@@ -18,13 +18,6 @@ function Pokedex() {
   // instead of sending the request to the api and causing load
   async function loadPokemon(pokemonID: string | number) {
     try {
-      // used to obtain image and audio
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokemonID}`,
-      );
-      const jsonData = await response.json();
-      console.log(jsonData);
-
       // used to obtain name, number, and description
       const speciesResponse = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`,
@@ -50,6 +43,13 @@ function Pokedex() {
 
       // remove that annoying arrow
       desc = desc.flavor_text.replace("\f", " ");
+
+      // used to obtain image and audio
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonID}`,
+      );
+      const jsonData = await response.json();
+      console.log(jsonData);
 
       const pokemonImage = jsonData["sprites"]["front_default"];
       console.log(`Image link: ${pokemonImage}`);
